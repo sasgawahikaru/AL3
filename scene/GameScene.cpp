@@ -9,8 +9,8 @@ GameScene::GameScene() {}
 
 //デストラクタ
 GameScene::~GameScene() {
-	delete sprite_;
-	delete model_;
+	//delete sprite_;
+	//delete model_;
 }
 
 void GameScene::Initialize() {
@@ -22,15 +22,25 @@ void GameScene::Initialize() {
 
 	textureHandle_ = TextureManager::Load("mario.jpg");
 	soundDataHandle_ = audio_->LoadWave("se_sad03.wav");
-	voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
+	//voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
 
 	sprite_ = Sprite::Create(textureHandle_, {100, 50});
-	audio_->PlayWave(soundDataHandle_);
+	//audio_->PlayWave(soundDataHandle_);
 
 	model_ = Model::Create();
 
 	worldTransform_.Initialize();
 	viewProjection_.Initialize();
+
+	worldTransform_.scale_ = {5.0f, 5.0f, 5.0f};
+	worldTransform_.Initialize();
+
+	worldTransform_.rotation_ = {XM_PI / 4.0f, XM_PI / 4.0f, 0.0f};
+	worldTransform_.Initialize();
+
+	worldTransform_.translation_ = {10.0f, 10.0f, 10.0f};
+	worldTransform_.Initialize();
+
 }
 //更新
 void GameScene::Update() {
@@ -89,7 +99,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
-	sprite_->Draw();
+	//sprite_->Draw();
 
 	// デバッグテキストの描画
 	debugText_->DrawAll(commandList);
@@ -97,12 +107,12 @@ void GameScene::Draw() {
 	// スプライト描画後処理
 	Sprite::PostDraw();
 	//スプライトの今の座標を取得
-	XMFLOAT2 position = sprite_->GetPosition();
+//	XMFLOAT2 position = sprite_->GetPosition();
 	//座標を｛2,0｝移動
-	position.x += 2.0f;
-	position.y += 1.0f;
+//	position.x += 2.0f;
+//	position.y += 1.0f;
 	//移動した座標をスプライトに反映
-	sprite_->SetPosition(position);
+//	sprite_->SetPosition(position);
 
 #pragma endregion
 }
